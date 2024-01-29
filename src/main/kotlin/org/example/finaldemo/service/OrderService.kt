@@ -16,8 +16,4 @@ class OrderService(private val orderDataSource: OrderDataSource) {
     fun calculateDelivery(order: Order): OrderDeliveryFee {
         return orderDataSource.calculateDelivery(order)
     }
-    //fun to calculate the delivery fee
-
-    //fun to create and calculate teh delivery fee at once
-
 }

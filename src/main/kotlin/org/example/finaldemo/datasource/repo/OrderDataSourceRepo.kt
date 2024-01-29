@@ -4,12 +4,16 @@ import org.example.finaldemo.model.OrderDto
 import org.example.finaldemo.model.Order
 import org.example.finaldemo.datasource.OrderDataSource
 import org.example.finaldemo.model.OrderDeliveryFee
+import org.jetbrains.annotations.TestOnly
 import org.springframework.stereotype.Repository
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.TimeZone
 
+/**
+ * An implementation of [OrderDataSource] using a repository.
+ */
 @Repository
 class OrderDataSourceRepo : OrderDataSource {
     override fun createOrder(orderDto: OrderDto): Order {
@@ -36,7 +40,14 @@ class OrderDataSourceRepo : OrderDataSource {
         return OrderDeliveryFee(deliveryFee)
     }
 
-    fun calculateTimeFee(time: String, deliveryFee: Int): Int {
+    /**
+     * Private function to calculate the time-based fee.
+     *
+     * @param time The time for which the fee is calculated.
+     * @param deliveryFee The current delivery fee.
+     * @return The calculated fee with time considerations.
+     */
+    private fun calculateTimeFee(time: String, deliveryFee: Int): Int {
         val instant = Instant.parse(time)
         val orderTime = LocalDateTime.ofInstant(instant, ZoneId.of("UTC"))
 
@@ -50,7 +61,7 @@ class OrderDataSourceRepo : OrderDataSource {
         return deliveryFee
     }
 
-    fun calculateItemSurcharge(numOfItems: Int): Int {
+    private fun calculateItemSurcharge(numOfItems: Int): Int {
         var newNumOfItems = numOfItems
         var fee = 0
 
@@ -62,7 +73,7 @@ class OrderDataSourceRepo : OrderDataSource {
         return fee
     }
 
-    fun calculateFeeForDistance(distance: Int): Int {
+    private fun calculateFeeForDistance(distance: Int): Int {
         var totalFee = 200
         var remainingDistance = distance
 
@@ -90,4 +101,13 @@ class OrderDataSourceRepo : OrderDataSource {
         }
 
     }
+
+    @TestOnly
+    fun calculateTimeFeeInTests(time: String, deliveryFee: Int): Int = calculateTimeFee(time, deliveryFee)
+    @TestOnly
+    fun calculateItemSurchargeInTests(numOfItems: Int): Int = calculateItemSurcharge(numOfItems)
+    @TestOnly
+    fun calculateFeeForDistanceInTests(distance: Int): Int = calculateFeeForDistance(distance)
+
+
 }

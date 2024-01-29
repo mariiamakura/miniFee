@@ -3,6 +3,7 @@ package org.example.finaldemo.datasource.repo
 import org.example.finaldemo.model.Order
 import org.example.finaldemo.model.OrderDto
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -28,7 +29,7 @@ class OrderDataSourceRepoTest {
     }
 
     @Nested
-    inner class deliveryCalculationCheck {
+    inner class DeliveryCalculationCheck {
         @Test
         fun `should return 0 delivery fee for cartValue 20000`() {
             //given
@@ -44,14 +45,14 @@ class OrderDataSourceRepoTest {
         }
 
         @Nested
-        inner class distanceFeeCheck {
+        inner class DistanceFeeCheck {
             @Test
             fun `should return 400 fee for 1501 meter distance`() {
                 //given
                 val orderDataSourceRepo = OrderDataSourceRepo()
 
                 //when
-                val deliveryFee = orderDataSourceRepo.calculateFeeForDistance(1501)
+                val deliveryFee = orderDataSourceRepo.calculateFeeForDistanceInTests(1501)
 
                 //then
                 assertEquals(400, deliveryFee)
@@ -65,7 +66,7 @@ class OrderDataSourceRepoTest {
                 val orderDataSourceRepo = OrderDataSourceRepo()
 
                 //when
-                val deliveryFee = orderDataSourceRepo.calculateFeeForDistance(1500)
+                val deliveryFee = orderDataSourceRepo.calculateFeeForDistanceInTests(1500)
 
                 //then
                 assertEquals(300, deliveryFee)
@@ -73,14 +74,14 @@ class OrderDataSourceRepoTest {
             }
         }
         @Nested
-        inner class itemFeeCheck {
+        inner class ItemFeeCheck {
             @Test
             fun `should return 300 fee on 10 items`() {
                 //given
                 val orderDataSourceRepo = OrderDataSourceRepo()
 
                 //when
-                val fee = orderDataSourceRepo.calculateItemSurcharge(10)
+                val fee = orderDataSourceRepo.calculateItemSurchargeInTests(10)
 
                 //then
                 assertEquals(300, fee)
@@ -93,7 +94,7 @@ class OrderDataSourceRepoTest {
                 val orderDataSourceRepo = OrderDataSourceRepo()
 
                 //when
-                val fee = orderDataSourceRepo.calculateItemSurcharge(13)
+                val fee = orderDataSourceRepo.calculateItemSurchargeInTests(13)
 
                 //then
                 assertEquals(570, fee)
@@ -106,7 +107,7 @@ class OrderDataSourceRepoTest {
                 val orderDataSourceRepo = OrderDataSourceRepo()
 
                 //when
-                val fee = orderDataSourceRepo.calculateItemSurcharge(14)
+                val fee = orderDataSourceRepo.calculateItemSurchargeInTests(14)
 
                 //then
                 assertEquals(620, fee)
@@ -114,14 +115,14 @@ class OrderDataSourceRepoTest {
             }
         }
         @Nested
-        inner class timeFeeCheck {
+        inner class TimeFeeCheck {
             @Test
             fun `should 276 fee for friday and 230 charge`() {
                 //given
                 val orderDataSourceRepo = OrderDataSourceRepo()
 
                 //when
-                val fee = orderDataSourceRepo.calculateTimeFee("2024-03-08T19:00:00Z", 230)
+                val fee = orderDataSourceRepo.calculateTimeFeeInTests("2024-03-08T19:00:00Z", 230)
 
                 //then
                 assertEquals(276, fee)
@@ -134,7 +135,7 @@ class OrderDataSourceRepoTest {
                 val orderDataSourceRepo = OrderDataSourceRepo()
 
                 //when
-                val fee = orderDataSourceRepo.calculateTimeFee("2024-03-08T19:00:01Z", 230)
+                val fee = orderDataSourceRepo.calculateTimeFeeInTests("2024-03-08T19:00:01Z", 230)
 
                 //then
                 assertEquals(230, fee)

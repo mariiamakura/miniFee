@@ -37,7 +37,7 @@ class OrderController(private val service: OrderService) {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     fun calculateDelivery(@RequestBody orderDto: OrderDto): OrderDeliveryFee {
-       val order = service.createOrder(orderDto)
+        val order = service.createOrder(orderDto)
         return service.calculateDelivery(order)
     }
 }

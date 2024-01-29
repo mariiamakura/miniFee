@@ -52,7 +52,7 @@ class OrderDtoControllerTest @Autowired constructor(
     }
 
     @Test
-    fun `int overflow`() {
+    fun `json parse error handled`() {
         val validOrderJson = mapOf(
             "cart_value" to 790000000000,
             "delivery_distance" to 60000000,
