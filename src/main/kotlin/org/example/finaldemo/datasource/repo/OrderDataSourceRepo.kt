@@ -63,11 +63,14 @@ class OrderDataSourceRepo : OrderDataSource {
     }
 
     fun calculateFeeForDistance(distance: Int): Int {
-        if (distance <= 1000) {
-            return 200
-        } else {
-            return 100 + calculateFeeForDistance(distance - 500)
+        var totalFee = 200
+        var remainingDistance = distance
+
+        while (remainingDistance > 1000) {
+            totalFee += 100
+            remainingDistance -= 500
         }
+        return totalFee
     }
 
     private fun validateOrderDto(orderDto: OrderDto) {
