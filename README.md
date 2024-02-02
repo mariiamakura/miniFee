@@ -1,10 +1,4 @@
-# Delivery Fee Calculator by Mariia Paraskun
-
-Hi Wolt Team! My name is Mariia, and I'm currently a student at 42 Berlin school, 
-where I primarily code in C/C++. Thanks for this challenge, it was a lot of fun 
-experimenting with Kotlin and Spring Boot for the first time!
-
-Without further ado, here is some information to help you run the application:
+# Delivery Fee Calculator
 
 ### Prerequisites
 - Java 17 or higher
