@@ -11,6 +11,20 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.TimeZone
 
+
+// The @Repository annotation helps to clarify the role of the annotated
+//class within the application architecture. By using @Repository,
+//you indicate that the class is responsible for data access and 
+//manipulation, typically interacting with a database or some other
+//persistent storage mechanism.
+
+
+//Spring provides exception translation support for classes annotated 
+//with @Repository. This means that any data access exceptions 
+//thrown by the repository methods are translated into 
+//Spring's DataAccessException hierarchy. This allows for consistent error 
+//handling and abstraction of the underlying data access technology.
+
 /**
  * An implementation of [OrderDataSource] using a repository.
  */

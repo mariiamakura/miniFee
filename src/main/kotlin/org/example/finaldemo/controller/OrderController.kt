@@ -34,8 +34,19 @@ class OrderController(private val service: OrderService) {
 
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+	//This annotation indicates that the HTTP response 
+	//status code for the calculateDelivery method will be set to 200 OK. 
+    @ResponseStatus(HttpStatus.OK) 
+	//This annotation tells Spring MVC to serialize 
+	//the return value of the calculateDelivery method 
+	//directly into the HTTP response body.
     @ResponseBody
+
+	//The @RequestBody annotation is applied to 
+	//the orderDto parameter of the calculateDelivery method. 
+	//This tells Spring MVC that the data in the body of 
+	//the incoming HTTP request should be converted into an instance 
+	//of the OrderDto class and passed as an argument to the method.
     fun calculateDelivery(@RequestBody orderDto: OrderDto): OrderDeliveryFee {
         val order = service.createOrder(orderDto)
         return service.calculateDelivery(order)

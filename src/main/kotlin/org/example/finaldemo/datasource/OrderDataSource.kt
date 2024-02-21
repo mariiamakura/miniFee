@@ -4,6 +4,14 @@ import org.example.finaldemo.model.Order
 import org.example.finaldemo.model.OrderDeliveryFee
 import org.example.finaldemo.model.OrderDto
 
+//interfaces are easy to refactor
+//interfaces facilitate easier unit testing.
+
+//Interfaces help to enforce the separation of concerns by defining 
+//clear boundaries between different parts of the application. 
+//OrderService is concerned with business logic related to orders, 
+//while OrderDataSource is concerned with data access. 
+
 /**
  * An interface representing a data source for handling orders.
  */
