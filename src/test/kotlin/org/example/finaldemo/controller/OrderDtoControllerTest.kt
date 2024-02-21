@@ -10,6 +10,9 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 
+
+//Autowire inject mockMVc and objectMapper to class
+//ObjectMapper is object to serialize and deserialed data
 @SpringBootTest
 @AutoConfigureMockMvc
 class OrderDtoControllerTest @Autowired constructor(
